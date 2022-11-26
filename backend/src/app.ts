@@ -7,6 +7,8 @@ import helmet from "helmet";
 import { connectToDB, disconnectFromDB } from "./utils/db";
 import logger from "./utils/logger";
 import userRoutes from "./modules/user/user.routes";
+import eventMarkerRoutes from "./modules/event-marker/event-marker.routes";
+import authRoutes from "./modules/auth/auth.routes";
 
 dotenv.config();
 
@@ -29,6 +31,8 @@ app.get("/healthcheck", (req: Request, res: Response) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/markers", eventMarkerRoutes);
+app.use("/api/auth", authRoutes);
 
 const server = app.listen(port, async () => {
   await connectToDB();

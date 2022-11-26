@@ -1,14 +1,20 @@
-import { pre, getModelForClass, prop } from "@typegoose/typegoose";
+import { getModelForClass, prop, Ref } from "@typegoose/typegoose";
 
 export class EventMarker {
   @prop({ required: true })
   public title: string;
 
-  @prop({ required: true })
-  public description: string;
+  @prop()
+  public description?: string;
 
   @prop({ required: true })
-  public position: string;
+  public lat: number;
+
+  @prop({ required: true })
+  public lng: number;
+
+  @prop({ default: 20 })
+  public radius?: number;
 }
 
 export const EventMarkerModel = getModelForClass(EventMarker, {
